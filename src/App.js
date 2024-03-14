@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import "./styles.css"
 import { NewTodosForm } from "./NewToDoForm.jsx"
 import { TodoList } from "./ToDoList.jsx"
+import API from "./API.jsx"
 export default function App(){
 const [todos,setTodos] = useState(()=>{
 const localValue = localStorage.getItem("ITEMS")
@@ -41,6 +42,8 @@ return(
 <h1 className="header">Todo List</h1>
 <TodoList todos={todos} toggleTodo={toggleTodo}
 deleteTodo={deleteTodo}/>
+<API/>
+
 </>
 )
 }
