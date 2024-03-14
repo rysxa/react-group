@@ -1,22 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
-import Header from './layout/Header';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-
-function App() {
-  return (
-    <div className="App">
-      <Router>
-        <Routers />
-        <div>
-          <Routes>
-            <Route exact path='/' element={<Header />} />
-            {/* <Route path='/props' element={<Props />} /> */}
-          </Routes>
-        </div>
-      </Router>
-    </div>
-  );
+import { useEffect, useState } from "react"
+import "./styles.css"
+import { NewTodosForm } from "./NewToDoForm.jsx"
+import { TodoList } from "./ToDoList.jsx"
+export default function App(){
+const [todos,setTodos] = useState(()=>{
+const localValue = localStorage.getItem("ITEMS")
+if(localValue == null) return []
+return JSON.parse(localValue)
+})
+useEffect(()=>{
+localStorage.setItem("ITEMS",JSON.stringify(todos))
+},[todos])
+function addTodo(title){
+setTodos((currentTodos)=>{
+return[
+...currentTodos,
+{ id: crypto.randomUUID(), title, completed:
+false},]
+})
 }
-
-export default App;
+function toggleTodo(id,completed){
+setTodos(currentTodos => {
+return currentTodos.map(todo=>{
+if(todo.id === id){
+// todo.completed = completed
+return { ...todo,completed}
+}
+return todo
+})
+})
+}
+function deleteTodo(id){
+setTodos(currentTodos => {
+return currentTodos.filter(todo => todo.id !== id )
+});
+}
+return(
+<>
+<NewTodosForm onSubmit={addTodo}/>
+<h1 className="header">Todo List</h1>
+<TodoList todos={todos} toggleTodo={toggleTodo}
+deleteTodo={deleteTodo}/>
+</>
+)
+}
