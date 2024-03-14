@@ -3,8 +3,8 @@
     box-sizing: border-box;
     }
     body {
-    background: #333;
-    color: hsl(200, 100%, 90%);
+    background:#a5dd9b;
+    color: hsl(199, 89%, 4%);
     max-width: 400px;
     padding: 1rem;
     margin: 0 auto;

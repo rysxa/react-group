@@ -10,7 +10,7 @@ export function TodoItem({completed, id, title,
     </label>
     <button
     onClick={()=> deleteTodo(id)}
-    className="btn btn-danger">Delete</button>
+    className="btn btn-danger" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Delete</button>
     </li>
     )
     }
