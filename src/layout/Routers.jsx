@@ -1,7 +1,5 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-import LooppingList from './training/LoopingList';
-import Props from './training/Props';
 
 const Routers = () => {
   return (
